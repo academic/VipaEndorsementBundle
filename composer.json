@@ -1,0 +1,29 @@
+{
+  "name" : "okulbilisim/endorsement-bundle",
+  "description" : "Endorsement bundle for OJS",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Behram ÇELEN",
+    "email" : "behram.celen@okulbilisim.com"
+  }],
+  "keywords" : [
+    "endorsement bundle"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+    "php": ">=5.4.0"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "OkulBilisim\\EndorsementBundle\\" : ""
+    }
+  },
+  "extra" : {
+    "branch-alias" :
+    {
+      "dev-master" : "0.0.1-dev"
+    }
+  }
+}
