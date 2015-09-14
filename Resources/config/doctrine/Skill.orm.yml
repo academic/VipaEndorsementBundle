@@ -1,0 +1,47 @@
+OkulBilisim\EndorsementBundle\Entity\Skill:
+  repositoryClass: OkulBilisim\EndorsementBundle\Entity\SkillRepository
+  table: en_skill
+  type: entity
+  gedmo:
+    soft_deleteable:
+      field_name: deletedAt
+      time_aware: false
+    loggable: true
+  id:
+    id:
+      generator:
+        strategy: UUID
+      id: true
+      type: guid
+  fields:
+    name:
+      type: string
+      nullable: false
+    created:
+      type: datetime
+      nullable: true
+      gedmo:
+        timestampable:
+          on: create
+    updated:
+      type: datetime
+      nullable: true
+      gedmo:
+        timestampable:
+          on: update
+    deletedAt:
+      type: date
+      nullable: true
+    createdBy:
+      type: string
+      nullable: true
+      gedmo:
+        blameable:
+          on: create
+    updatedBy:
+      type: string
+      nullable: true
+      gedmo:
+        blameable:
+          on: update
+  lifecycleCallbacks: {}
