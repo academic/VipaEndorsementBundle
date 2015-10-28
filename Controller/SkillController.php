@@ -24,7 +24,7 @@ class SkillController extends Controller
     public function indexAction(Request $request)
     {
         $user = $this->getUser();
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $userSkills = $em->getRepository('EndorsementBundle:UserSkill')->findBy([
             'user' => $this->getUser()
         ]);
@@ -72,7 +72,7 @@ class SkillController extends Controller
      */
     public function addAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createCreateForm();
         $form->handleRequest($request);
         $userSkill = new UserSkill();
@@ -95,7 +95,7 @@ class SkillController extends Controller
      */
     public function endorseUserAction(Request $request, UserSkill $userSkill)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $endorserUser = $this->getUser();
         $endorseUser = new UserEndorse();
         $endorseUser
