@@ -19,7 +19,7 @@
                 <h3>
                 {% for userSkill in userSkills %}
                     <a class="btn btn-primary skill-item" data-name="{{ userSkill.skill.name }}" href="{{ path('user_endorsement_skills_remove', {id: userSkill.id}) }}">
-                        <span class="skill-item-name">{{ userSkill.skill.name }}</span> <span class="badge">22</span>
+                        <span class="skill-item-name">{{ userSkill.skill.name }}</span> <span class="badge">{{ userSkill.endorsementCount }}</span>
                     </a>
                 {% endfor %}
                 </h3>
