@@ -53,7 +53,7 @@ class EndorsementEventListener implements EventSubscriberInterface
     {
         $isActive = $event->getOptions()['activeTab'] == 5 ? 'class="active"':'';
         $event->setTemplate('<li role="presentation" '.$isActive.'>'
-            .'<a href="">skills</a>'
+            .'<a href="'.$this->router->generate('user_endorsement_skills').'">skills</a>'
         .'</li>');
     }
 }

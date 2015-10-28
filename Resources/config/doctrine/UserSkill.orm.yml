@@ -1,0 +1,25 @@
+OkulBilisim\EndorsementBundle\Entity\UserSkill:
+  type: entity
+  table: en_user_skill
+  repositoryClass: OkulBilisim\EndorsementBundle\Entity\UserSkillRepository
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    endorsementCount:
+      column: endorsement_count
+      type: integer
+  manyToOne:
+    user:
+      targetEntity: Ojs\UserBundle\Entity\User
+      joinColumn:
+        name: user_id
+        referencedColumnName: id
+    skill:
+      targetEntity: OkulBilisim\EndorsementBundle\Entity\Skill
+      joinColumn:
+        name: skill_id
+        referencedColumnName: id

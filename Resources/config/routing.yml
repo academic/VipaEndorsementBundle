@@ -1,0 +1,11 @@
+user_endorsement_skills:
+    path: /user/skills
+    defaults: { _controller: "EndorsementBundle:Skill:index" }
+
+user_endorsement_skills_add:
+    path: /user/skills/add
+    defaults: { _controller: "EndorsementBundle:Skill:add" }
+
+user_endorsement_skills_remove:
+    path: /user/skills/remove/{id}
+    defaults: { _controller: "EndorsementBundle:Skill:remove" }

@@ -7,18 +7,6 @@ OkulBilisim\EndorsementBundle\Entity\Skill:
       field_name: deletedAt
       time_aware: false
     loggable: true
-  manyToMany:
-    skillUsers:
-      targetEntity: Ojs\UserBundle\Entity\User
-      joinTable:
-        name: en_user_skill
-        joinColumns:
-          skill_id:
-            referencedColumnName: id
-        inverseJoinColumns:
-          user_id:
-            referencedColumnName: id
-      cascade: ["persist"]
   id:
     id:
       generator:

@@ -25,11 +25,6 @@ class Skill
     private $name;
 
     /**
-     * @var ArrayCollection|User[]
-     */
-    private $skillUsers;
-
-    /**
      * Skill constructor.
      */
     public function __construct()
@@ -65,33 +60,8 @@ class Skill
         return $this;
     }
 
-    /**
-     * @return ArrayCollection|User[]
-     */
-    public function getSkillUsers()
+    public function __toString()
     {
-        return $this->skillUsers;
-    }
-
-    /**
-     * @param ArrayCollection|User[] $skillUsers
-     * @return $this
-     */
-    public function setSkillUsers($skillUsers)
-    {
-        $this->skillUsers = $skillUsers;
-        return $this;
-    }
-
-    /**
-     * @param  User $user
-     * @return Skill
-     */
-    public function addSkillUser(User $user)
-    {
-        if (!$this->skillUsers->contains($user)) {
-            $this->skillUsers->add($user);
-        }
-        return $this;
+        return $this->getName();
     }
 }

@@ -1,0 +1,48 @@
+{% extends '::ojsbase.html.twig' %}
+{% block title %}{{ 'title.skills'|trans }} {{ parent() }}{% endblock %}
+
+{% block breadcrumb %}
+    {% set list = [
+    {'link': path('dashboard'), 'title': 'User'|trans},
+    { 'link': path('dashboard'), 'title': 'user.update_profile'|trans},
+    { 'title': 'title.skills'|trans},
+    ] %}
+    {{ breadcrumb(list) }}
+{% endblock %}
+
+{% block body -%}
+    <div class="large-12 columns">
+        {% include 'OjsSiteBundle:User:tabs.html.twig' with {activo:5} %}
+        <div class="tab-content">
+            <div class="panel">
+                {% include '::flashbag.html.twig' %}
+                <h3>
+                {% for userSkill in userSkills %}
+                    <a class="btn btn-primary skill-item" data-name="{{ userSkill.skill.name }}" href="{{ path('user_endorsement_skills_remove', {id: userSkill.id}) }}">
+                        <span class="skill-item-name">{{ userSkill.skill.name }}</span> <span class="badge">22</span>
+                    </a>
+                {% endfor %}
+                </h3>
+                <hr>
+                {{ form(skillAddForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.skill-item').each(function () {
+            $(this).hover(
+                function() {
+                    $(this).removeClass('btn-primary').addClass('btn-danger');
+                    $(this).find('.skill-item-name').html('Remove');
+                }, function() {
+                   $(this).removeClass('btn-danger').addClass('btn-primary');
+                   $(this).find('.skill-item-name').html($(this).attr('data-name'));
+                }
+            );
+        });
+    </script>
+{% endblock %}
