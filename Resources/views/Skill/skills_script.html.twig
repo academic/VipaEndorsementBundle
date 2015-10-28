@@ -1,0 +1,17 @@
+{% if isCurrentUser == false %}
+    <script>
+        $(function() {
+            $('.skill-item').each(function () {
+                $(this).hover(
+                        function() {
+                            $(this).removeClass('btn-primary').addClass('btn-warning');
+                            $(this).find('.skill-item-name').html('Endorse');
+                        }, function() {
+                            $(this).removeClass('btn-warning').addClass('btn-primary');
+                            $(this).find('.skill-item-name').html($(this).attr('data-name'));
+                        }
+                );
+            });
+        });
+    </script>
+{% endif %}

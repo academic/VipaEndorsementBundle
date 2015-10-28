@@ -9,3 +9,7 @@ user_endorsement_skills_add:
 user_endorsement_skills_remove:
     path: /user/skills/remove/{id}
     defaults: { _controller: "EndorsementBundle:Skill:remove" }
+
+user_endorsement_endorse_user:
+    path: /user/endorse/{id}
+    defaults: { _controller: "EndorsementBundle:Skill:endorseUser" }

@@ -3,6 +3,7 @@
 namespace OkulBilisim\EndorsementBundle\Controller;
 
 use FOS\UserBundle\Model\UserInterface;
+use OkulBilisim\EndorsementBundle\Entity\UserEndorse;
 use OkulBilisim\EndorsementBundle\Entity\UserSkill;
 use OkulBilisim\EndorsementBundle\Form\Type\SkillType;
 use Ojs\CoreBundle\Controller\OjsController as Controller;
@@ -85,5 +86,29 @@ class SkillController extends Controller
 
         $this->successFlashBag('success.create');
         return $this->redirectToRoute('user_endorsement_skills');
+    }
+
+    /**
+     * @param Request $request
+     * @param UserSkill $userSkill
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function endorseUserAction(Request $request, UserSkill $userSkill)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $endorserUser = $this->getUser();
+        $endorseUser = new UserEndorse();
+        $endorseUser
+            ->setEndorser($endorserUser)
+            ->setUser($userSkill->getUser())
+            ->setSkill($userSkill->getSkill())
+            ;
+        $userSkill->setEndorsementCount($userSkill->getEndorsementCount()+1);
+        $em->persist($endorseUser);
+        $em->flush();
+        $this->successFlashBag('success.create');
+        return $this->redirectToRoute('ojs_user_profile', [
+            'slug' => $userSkill->getUser()->getUsername()
+        ]);
     }
 }

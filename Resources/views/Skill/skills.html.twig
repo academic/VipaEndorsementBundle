@@ -1,0 +1,31 @@
+<hr>
+<h3>Skills</h3>
+<h3>
+    {% for userSkill in userSkills %}
+        <a class="btn btn-primary skill-item"
+           {% if isCurrentUser == false %}
+                data-name="{{ userSkill.skill.name }}"
+                href="{{ path('user_endorsement_endorse_user', {id: userSkill.id}) }}"
+           {% endif %}
+           >
+            <span class="skill-item-name">{{ userSkill.skill.name }}</span> <span class="badge">{{ userSkill.endorsementCount }}</span>
+        </a>
+    {% endfor %}
+    {% if isCurrentUser == false %}
+        <script>
+            $(function() {
+                $('.skill-item').each(function () {
+                    $(this).hover(
+                            function() {
+                                $(this).removeClass('btn-primary').addClass('btn-warning');
+                                $(this).find('.skill-item-name').html('Endorse');
+                            }, function() {
+                                $(this).removeClass('btn-warning').addClass('btn-primary');
+                                $(this).find('.skill-item-name').html($(this).attr('data-name'));
+                            }
+                    );
+                });
+            });
+        </script>
+    {% endif %}
+</h3>
