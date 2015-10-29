@@ -76,15 +76,14 @@ class SkillController extends Controller
     {
         $skillNameOrId = $request->request->get('okul_bilisim_endorsementbundle_skill')['skills'];
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createCreateForm();
-        $form->handleRequest($request);
-        $formData = $form->getData();
-        $skill = $formData['skills'];
-        if(is_null($skill)){
+        if(!(int)$skillNameOrId){
             $skill = new Skill();
             $skill->setName($skillNameOrId);
             $em->persist($skill);
             $em->flush();
+        }else{
+            $skill = $em->getRepository("EndorsementBundle:Skill")->find($skillNameOrId);
+            $this->throw404IfNotFound($skill);
         }
         $userSkill = new UserSkill();
         $userSkill
