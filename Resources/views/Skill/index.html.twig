@@ -37,7 +37,7 @@
             $(this).hover(
                 function() {
                     $(this).removeClass('btn-primary').addClass('btn-danger');
-                    $(this).find('.skill-item-name').html('Remove');
+                    $(this).find('.skill-item-name').html('{{ "skills.remove"|trans }}');
                 }, function() {
                    $(this).removeClass('btn-danger').addClass('btn-primary');
                    $(this).find('.skill-item-name').html($(this).attr('data-name'));

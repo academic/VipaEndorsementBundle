@@ -18,7 +18,7 @@
                     $(this).hover(
                             function() {
                                 $(this).removeClass('btn-primary').addClass('btn-warning');
-                                $(this).find('.skill-item-name').html('Endorse');
+                                $(this).find('.skill-item-name').html('{{ "skills.endorse"|trans }}');
                             }, function() {
                                 $(this).removeClass('btn-warning').addClass('btn-primary');
                                 $(this).find('.skill-item-name').html($(this).attr('data-name'));
