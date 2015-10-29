@@ -3,6 +3,7 @@
 namespace OkulBilisim\EndorsementBundle\Controller;
 
 use FOS\UserBundle\Model\UserInterface;
+use OkulBilisim\EndorsementBundle\Entity\Skill;
 use OkulBilisim\EndorsementBundle\Entity\UserEndorse;
 use OkulBilisim\EndorsementBundle\Entity\UserSkill;
 use OkulBilisim\EndorsementBundle\Form\Type\SkillType;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\GetResponseUserEvent;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SkillController extends Controller
 {
@@ -72,12 +74,22 @@ class SkillController extends Controller
      */
     public function addAction(Request $request)
     {
+        $skillNameOrId = $request->request->get('okul_bilisim_endorsementbundle_skill')['skills'];
         $em = $this->getDoctrine()->getManager();
         $form = $this->createCreateForm();
         $form->handleRequest($request);
+        $formData = $form->getData();
+        if(is_int($skillNameOrId)){
+            $skill = $formData['skills'];
+        }else{
+            $skill = new Skill();
+            $skill->setName($skillNameOrId);
+            $em->persist($skill);
+            $em->flush();
+        }
         $userSkill = new UserSkill();
         $userSkill
-            ->setSkill($form->getData()['skills'])
+            ->setSkill($skill)
             ->setUser($this->getUser())
             ->setEndorsementCount(0)
             ;
@@ -110,5 +122,37 @@ class SkillController extends Controller
         return $this->redirectToRoute('ojs_user_profile', [
             'slug' => $userSkill->getUser()->getUsername()
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function autoCompleteAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $skillRepo = $em->getRepository("EndorsementBundle:Skill");
+        $skills = $skillRepo->createQueryBuilder('s')
+            ->where('s.name LIKE :skill')
+            ->setParameter('skill', '%'.$request->get('q').'%')
+            ->getQuery()
+            ->getResult();
+
+        $data = [];
+        if(count($skills)>0){
+            /** @var Skill $skill */
+            foreach ($skills as $skill) {
+                $data[] = [
+                    'id' => $skill->getId(),
+                    'text' => $skill->getName(),
+                ];
+            }
+        }else{
+            $data[] = [
+                'id' => $request->get('q'),
+                'text' => $request->get('q')
+            ];
+        }
+        return new JsonResponse($data);
     }
 }

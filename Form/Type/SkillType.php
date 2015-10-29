@@ -20,10 +20,16 @@ class SkillType extends AbstractType
         $builder
             ->add(
                 'skills',
-                'entity',
+                'tetranz_select2entity',
                 [
+                    'remote_route' => 'user_endorsement_skill_autocomplete',
                     'label' => 'skill',
                     'class' => 'OkulBilisim\EndorsementBundle\Entity\Skill',
+                    'label' => 'select.skill',
+                    'attr' => [
+                        'class' => 'select2-element',
+                        'placeholder' => 'journal.switch',
+                    ]
                 ]
             )
             ->add('add', 'submit')

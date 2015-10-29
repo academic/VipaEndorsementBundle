@@ -13,3 +13,8 @@ user_endorsement_skills_remove:
 user_endorsement_endorse_user:
     path: /user/endorse/{id}
     defaults: { _controller: "EndorsementBundle:Skill:endorseUser" }
+
+user_endorsement_skill_autocomplete:
+    path:  /user/endorse/skill/autocomplete
+    defaults: { _controller: EndorsementBundle:Skill:autoComplete }
+    methods:  [GET]
