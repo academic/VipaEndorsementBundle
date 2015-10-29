@@ -110,8 +110,7 @@ class SkillController extends Controller
         $endorseUser = new UserEndorse();
         $endorseUser
             ->setEndorser($endorserUser)
-            ->setUser($userSkill->getUser())
-            ->setSkill($userSkill->getSkill())
+            ->setUserSkill($userSkill)
             ;
         $userSkill->setEndorsementCount($userSkill->getEndorsementCount()+1);
         $em->persist($endorseUser);

@@ -10,18 +10,13 @@ OkulBilisim\EndorsementBundle\Entity\UserEndorse:
         strategy: AUTO
   uniqueConstraints:
       user_skill_endorser_idx:
-          columns: user_id, skill_id, endorser_id
+          columns: user_skill_id, endorser_id
   fields:
   manyToOne:
-    user:
-      targetEntity: Ojs\UserBundle\Entity\User
+    userSkill:
+      targetEntity: OkulBilisim\EndorsementBundle\Entity\UserSkill
       joinColumn:
-        name: user_id
-        referencedColumnName: id
-    skill:
-      targetEntity: OkulBilisim\EndorsementBundle\Entity\Skill
-      joinColumn:
-        name: skill_id
+        name: user_skill_id
         referencedColumnName: id
     endorser:
       targetEntity: Ojs\UserBundle\Entity\User

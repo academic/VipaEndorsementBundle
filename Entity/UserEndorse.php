@@ -20,14 +20,9 @@ class UserEndorse
     private $id;
 
     /**
-     * @var User
+     * @var UserSkill
      */
-    private $user;
-
-    /**
-     * @var Skill
-     */
-    private $skill;
+    private $userSkill;
 
     /**
      * @var User
@@ -45,20 +40,20 @@ class UserEndorse
     }
 
     /**
-     * @return User
+     * @return UserSkill
      */
-    public function getUser()
+    public function getUserSkill()
     {
-        return $this->user;
+        return $this->userSkill;
     }
 
     /**
-     * @param User $user
+     * @param UserSkill $userSkill
      * @return $this
      */
-    public function setUser(User $user)
+    public function setUserSkill(UserSkill $userSkill)
     {
-        $this->user = $user;
+        $this->userSkill = $userSkill;
         return $this;
     }
 
@@ -77,24 +72,6 @@ class UserEndorse
     public function setEndorser(User $endorser)
     {
         $this->endorser = $endorser;
-        return $this;
-    }
-
-    /**
-     * @return Skill
-     */
-    public function getSkill()
-    {
-        return $this->skill;
-    }
-
-    /**
-     * @param Skill $skill
-     * @return $this
-     */
-    public function setSkill(Skill $skill)
-    {
-        $this->skill = $skill;
         return $this;
     }
 }
