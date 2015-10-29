@@ -22,6 +22,7 @@ class SkillType extends AbstractType
                 'skills',
                 'tetranz_select2entity',
                 [
+                    'required' => true,
                     'remote_route' => 'user_endorsement_skill_autocomplete',
                     'label' => 'skill',
                     'class' => 'OkulBilisim\EndorsementBundle\Entity\Skill',

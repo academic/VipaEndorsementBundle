@@ -79,9 +79,8 @@ class SkillController extends Controller
         $form = $this->createCreateForm();
         $form->handleRequest($request);
         $formData = $form->getData();
-        if(is_int($skillNameOrId)){
-            $skill = $formData['skills'];
-        }else{
+        $skill = $formData['skills'];
+        if(is_null($skill)){
             $skill = new Skill();
             $skill->setName($skillNameOrId);
             $em->persist($skill);
@@ -132,27 +131,39 @@ class SkillController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $skillRepo = $em->getRepository("EndorsementBundle:Skill");
+        $userSkillRepo = $em->getRepository("EndorsementBundle:UserSkill");
+        $userSkills = $userSkillRepo->findBy([
+            'user' => $this->getUser()
+        ]);
+        $userSkillIds = [];
+        $userSkillNames = [];
+        /** @var UserSkill $userSkill */
+        foreach($userSkills as $userSkill){
+            $userSkillIds[] = $userSkill->getSkill()->getId();
+            $userSkillNames[] = $userSkill->getSkill()->getName();
+        }
         $skills = $skillRepo->createQueryBuilder('s')
             ->where('s.name LIKE :skill')
             ->setParameter('skill', '%'.$request->get('q').'%')
             ->getQuery()
             ->getResult();
-
         $data = [];
-        if(count($skills)>0){
-            /** @var Skill $skill */
-            foreach ($skills as $skill) {
+        /** @var Skill $skill */
+        foreach ($skills as $skill) {
+            if(!in_array($skill->getId(), $userSkillIds)){
                 $data[] = [
-                    'id' => $skill->getId(),
+                    'id' => (int)$skill->getId(),
                     'text' => $skill->getName(),
                 ];
             }
-        }else{
+        }
+        if(count($data) == 0 && !in_array($request->get('q'), $userSkillNames)) {
             $data[] = [
-                'id' => $request->get('q'),
+                'id' => (string)$request->get('q'),
                 'text' => $request->get('q')
             ];
         }
+
         return new JsonResponse($data);
     }
 }
