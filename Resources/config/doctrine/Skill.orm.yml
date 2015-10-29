@@ -10,9 +10,9 @@ OkulBilisim\EndorsementBundle\Entity\Skill:
   id:
     id:
       generator:
-        strategy: UUID
+        strategy: AUTO
       id: true
-      type: guid
+      type: integer
   fields:
     name:
       type: string

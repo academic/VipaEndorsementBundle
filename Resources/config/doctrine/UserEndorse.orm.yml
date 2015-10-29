@@ -8,6 +8,9 @@ OkulBilisim\EndorsementBundle\Entity\UserEndorse:
       id: true
       generator:
         strategy: AUTO
+  uniqueConstraints:
+      user_skill_endorser_idx:
+          columns: user_id, skill_id, endorser_id
   fields:
   manyToOne:
     user:
