@@ -1,31 +1,52 @@
 <hr>
-<h3>Skills</h3>
-<h3>
-    {% for userSkill in userSkills %}
-        <a class="btn btn-primary skill-item"
-           {% if isCurrentUser == false %}
-                data-name="{{ userSkill.skill.name }}"
-                href="{{ path('user_endorsement_endorse_user', {id: userSkill.id}) }}"
-           {% endif %}
-           >
-            <span class="skill-item-name">{{ userSkill.skill.name }}</span> <span class="badge">{{ userSkill.endorsementCount }}</span>
-        </a>
-    {% endfor %}
-    {% if isCurrentUser == false %}
-        <script>
-            $(function() {
-                $('.skill-item').each(function () {
-                    $(this).hover(
-                            function() {
-                                $(this).removeClass('btn-primary').addClass('btn-warning');
-                                $(this).find('.skill-item-name').html('{{ "skills.endorse"|trans }}');
-                            }, function() {
-                                $(this).removeClass('btn-warning').addClass('btn-primary');
-                                $(this).find('.skill-item-name').html($(this).attr('data-name'));
-                            }
-                    );
-                });
+<div class="col-sm-6">
+    <h4>Skills</h4>
+    <table class="table table-condensed">
+        {% for userSkill in userSkills %}
+            <tr>
+                <th>
+                    <a class="btn btn-primary skill-item btn-sm"
+                            {% if isCurrentUser == false %}
+                                data-name="{{ userSkill.skill.name }}"
+                                href="{{ path('user_endorsement_endorse_user', {id: userSkill.id}) }}"
+                            {% endif %}
+                            >
+                        <span class="skill-item-name">{{ userSkill.skill.name }}</span> <span class="badge">{{ userSkill.endorsementCount }}</span>
+                    </a>
+                </th>
+                <th>
+                    {% for endorse in userSkill.userSkillEndorsers %}
+                        <a href="{{ path('ojs_user_profile', {slug: endorse.endorser.username}) }}">
+                            <img
+                                {% if endorse.endorser.avatar is not null %}
+                                    class="img-circle"
+                                {% else %}
+                                    class="img-circle" src="{{ asset('assets/app/images/buddy_sample.png') }}"
+                                {% endif %}
+                                height="20" width="20"
+                                src="{% if endorse.endorser.avatar %}{{ endorse.endorser.avatar|imagine_filter('user_croped') }}{% endif %}"/>
+                        </a>
+                    {% endfor %}
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% if isCurrentUser == false %}
+    <script>
+        $(function() {
+            $('.skill-item').each(function () {
+                $(this).hover(
+                        function() {
+                            $(this).removeClass('btn-primary').addClass('btn-warning');
+                            $(this).find('.skill-item-name').html('{{ "skills.endorse"|trans }}');
+                        }, function() {
+                            $(this).removeClass('btn-warning').addClass('btn-primary');
+                            $(this).find('.skill-item-name').html($(this).attr('data-name'));
+                        }
+                );
             });
-        </script>
-    {% endif %}
-</h3>
+        });
+    </script>
+{% endif %}

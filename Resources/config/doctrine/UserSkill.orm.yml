@@ -26,3 +26,7 @@ OkulBilisim\EndorsementBundle\Entity\UserSkill:
       joinColumn:
         name: skill_id
         referencedColumnName: id
+  oneToMany:
+    userSkillEndorsers:
+      targetEntity: OkulBilisim\EndorsementBundle\Entity\UserEndorse
+      mappedBy: userSkill

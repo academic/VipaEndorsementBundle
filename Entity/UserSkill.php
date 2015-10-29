@@ -3,6 +3,7 @@
 namespace OkulBilisim\EndorsementBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use OkulBilisim\EndorsementBundle\Entity\Traits\GenericEntityTrait;
 use Ojs\UserBundle\Entity\User;
 
@@ -33,6 +34,11 @@ class UserSkill
      * @var string
      */
     private $endorsementCount;
+
+    /**
+     * @var Collection|UserEndorse[]
+     */
+    private $userSkillEndorsers;
 
     /**
      * Get id
@@ -95,6 +101,24 @@ class UserSkill
     public function setEndorsementCount($endorsementCount)
     {
         $this->endorsementCount = $endorsementCount;
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserEndorse[]
+     */
+    public function getUserSkillEndorsers()
+    {
+        return $this->userSkillEndorsers;
+    }
+
+    /**
+     * @var Collection|UserEndorse[] $userSkillEndorsers
+     * @return $this
+     */
+    public function setUserSkillEndorsers($userSkillEndorsers)
+    {
+        $this->userSkillEndorsers = $userSkillEndorsers;
         return $this;
     }
 }
