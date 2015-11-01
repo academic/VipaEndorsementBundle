@@ -2,18 +2,14 @@
 
 namespace OkulBilisim\EndorsementBundle\Controller;
 
-use FOS\UserBundle\Model\UserInterface;
+use Ojs\CoreBundle\Controller\OjsController as Controller;
 use OkulBilisim\EndorsementBundle\Entity\Skill;
 use OkulBilisim\EndorsementBundle\Entity\UserEndorse;
 use OkulBilisim\EndorsementBundle\Entity\UserSkill;
 use OkulBilisim\EndorsementBundle\Form\Type\SkillType;
-use Ojs\CoreBundle\Controller\OjsController as Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use FOS\UserBundle\FOSUserEvents;
-use FOS\UserBundle\Event\GetResponseUserEvent;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SkillController extends Controller
 {
@@ -112,7 +108,7 @@ class SkillController extends Controller
             ->setEndorser($endorserUser)
             ->setUserSkill($userSkill)
             ;
-        $userSkill->setEndorsementCount($userSkill->getEndorsementCount()+1);
+        $userSkill->setEndorsementCount(1 + $userSkill->getEndorsementCount());
         $em->persist($endorseUser);
         $em->flush();
         $this->successFlashBag('success.create');
