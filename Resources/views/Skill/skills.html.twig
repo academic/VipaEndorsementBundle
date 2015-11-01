@@ -3,12 +3,20 @@
     <h4>Skills</h4>
     <table class="table table-condensed">
         {% for userSkill in userSkills %}
+            {% set userEndorsedItem = false %}
+            {% for endorse in userSkill.userSkillEndorsers %}
+                {% if endorse.endorser.id == app.user.id %}
+                    {% set userEndorsedItem = true %}
+                {% endif %}
+            {% endfor %}
             <tr>
                 <th>
-                    <a class="btn btn-primary skill-item btn-sm"
+                    <a class="btn btn-primary {% if userEndorsedItem == false %}skill-item{% endif %} btn-sm"
                             {% if isCurrentUser == false %}
                                 data-name="{{ userSkill.skill.name }}"
-                                href="{{ path('user_endorsement_endorse_user', {id: userSkill.id}) }}"
+                                {% if userEndorsedItem == false %}
+                                    href="{{ path('user_endorsement_endorse_user', {id: userSkill.id}) }}"
+                                {% endif %}
                             {% endif %}
                             >
                         <span class="skill-item-name">{{ userSkill.skill.name }}</span> <span class="badge">{{ userSkill.endorsementCount }}</span>
