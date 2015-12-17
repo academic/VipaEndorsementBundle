@@ -16,5 +16,5 @@ user_endorsement_endorse_user:
 
 user_endorsement_skill_autocomplete:
     path:  /user/endorse/skill/autocomplete
-    defaults: { _controller: EndorsementBundle:Skill:autoComplete }
+    defaults: { _controller: "EndorsementBundle:Skill:autoComplete" }
     methods:  [GET]
