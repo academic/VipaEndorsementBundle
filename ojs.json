@@ -1,0 +1,16 @@
+{
+  "name": "Endorsement",
+  "description": "Ojs Endorsement Plugin",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://bitbucket.org/bulutyazilim/endorsment.git"
+    }
+  ],
+  "require": {
+    "bulutyazilim/endorsement-bundle": "~0.2"
+  },
+  "extra": {
+    "bundle-class": "BulutYazilim\\EndorsementBundle\\EndorsementBundle"
+  }
+}
