@@ -68,7 +68,7 @@ class EndorsementEventListener implements EventSubscriberInterface
      */
     public function onUserProfileEditTabs(TwigEvent $event)
     {
-        $isActive = $event->getOptions()['active_tab'] == 5 ? 'class="active"':'';
+        $isActive = $event->getOptions()['active_tab'] == 6 ? 'class="active"':'';
         $event->setTemplate('<li role="presentation" '.$isActive.'>'
             .'<a href="'.$this->router->generate('user_endorsement_skills').'">skills</a>'
         .'</li>');
