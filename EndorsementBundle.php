@@ -1,6 +1,6 @@
 <?php
 
-namespace OkulBilisim\EndorsementBundle;
+namespace BulutYazilim\EndorsementBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

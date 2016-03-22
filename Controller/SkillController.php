@@ -1,12 +1,12 @@
 <?php
 
-namespace OkulBilisim\EndorsementBundle\Controller;
+namespace BulutYazilim\EndorsementBundle\Controller;
 
 use Ojs\CoreBundle\Controller\OjsController as Controller;
-use OkulBilisim\EndorsementBundle\Entity\Skill;
-use OkulBilisim\EndorsementBundle\Entity\UserEndorse;
-use OkulBilisim\EndorsementBundle\Entity\UserSkill;
-use OkulBilisim\EndorsementBundle\Form\Type\SkillType;
+use BulutYazilim\EndorsementBundle\Entity\Skill;
+use BulutYazilim\EndorsementBundle\Entity\UserEndorse;
+use BulutYazilim\EndorsementBundle\Entity\UserSkill;
+use BulutYazilim\EndorsementBundle\Form\Type\SkillType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,15 +16,14 @@ class SkillController extends Controller
     /**
      * Change user password
      *
-     * @param Request $request
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $userSkills = $em->getRepository('EndorsementBundle:UserSkill')->findBy([
-            'user' => $this->getUser()
+            'user' => $user
         ]);
 
         $skillAddForm = $this->createCreateForm();
@@ -35,7 +34,7 @@ class SkillController extends Controller
     }
 
     /**
-     * @return Form
+     * @return \Symfony\Component\Form\Form
      */
     private function createCreateForm()
     {

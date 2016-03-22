@@ -1,10 +1,10 @@
 <?php
 
-namespace OkulBilisim\EndorsementBundle\Entity\Traits;
+namespace BulutYazilim\EndorsementBundle\Entity\Traits;
 
 /**
  * Class GenericEntityTrait
- * @package OkulBilisim\EndorsementBundle\Entity\Traits\GenericEntityTrait
+ * @package BulutYazilim\EndorsementBundle\Entity\Traits\GenericEntityTrait
  */
 trait GenericEntityTrait
 {

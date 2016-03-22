@@ -1,6 +1,6 @@
 <?php
 
-namespace OkulBilisim\EndorsementBundle\EventListener;
+namespace BulutYazilim\EndorsementBundle\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Ojs\CoreBundle\Events\TwigEvent;

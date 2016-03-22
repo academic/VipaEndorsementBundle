@@ -1,6 +1,6 @@
 <?php
 
-namespace OkulBilisim\EndorsementBundle\Form\Type;
+namespace BulutYazilim\EndorsementBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use Ojs\UserBundle\Entity\User;
@@ -25,7 +25,7 @@ class SkillType extends AbstractType
                     'required' => true,
                     'remote_route' => 'user_endorsement_skill_autocomplete',
                     'label' => 'skill',
-                    'class' => 'OkulBilisim\EndorsementBundle\Entity\Skill',
+                    'class' => 'BulutYazilim\EndorsementBundle\Entity\Skill',
                     'label' => 'select.skill',
                     'attr' => [
                         'class' => 'select2-element',

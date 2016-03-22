@@ -1,5 +1,5 @@
-OkulBilisim\EndorsementBundle\Entity\Skill:
-  repositoryClass: OkulBilisim\EndorsementBundle\Entity\SkillRepository
+BulutYazilim\EndorsementBundle\Entity\Skill:
+  repositoryClass: BulutYazilim\EndorsementBundle\Entity\SkillRepository
   table: en_skill
   type: entity
   gedmo:

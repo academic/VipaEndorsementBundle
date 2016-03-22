@@ -1,29 +1,32 @@
 {
-  "name" : "okulbilisim/endorsement-bundle",
-  "description" : "Endorsement bundle for OJS",
-  "type" : "symfony-bundle",
-  "authors" : [{
-    "name" : "Behram ÇELEN",
-    "email" : "behram.celen@okulbilisim.com"
-  }],
-  "keywords" : [
+  "name": "bulutyazilim/endorsement-bundle",
+  "description": "Endorsement bundle for OJS",
+  "type": "ojs-bundle",
+  "authors": [
+    {
+      "name": "Behram ÇELEN",
+      "email": "behram.celen@okulbilisim.com"
+    }
+  ],
+  "keywords": [
     "endorsement bundle"
   ],
-  "license" : [
+  "license": [
     "MIT"
   ],
-  "require" : {
-    "php": ">=5.4.0"
+  "require": {
+    "php": ">=5.5.9",
+    "symfony/symfony": "~2.8|~3.0",
+    "doctrine/orm": "~2.5"
   },
-  "autoload" : {
-    "psr-4" : {
-      "OkulBilisim\\EndorsementBundle\\" : ""
+  "autoload": {
+    "psr-4": {
+      "BulutYazilim\\EndorsementBundle\\": ""
     }
   },
-  "extra" : {
-    "branch-alias" :
-    {
-      "dev-master" : "0.0.1-dev"
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.0.2-dev"
     }
   }
 }

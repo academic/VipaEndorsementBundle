@@ -1,6 +1,6 @@
 <?php
 
-namespace OkulBilisim\EndorsementBundle\Entity\Traits;
+namespace BulutYazilim\EndorsementBundle\Entity\Traits;
 
 /**
  * Class TimestampableTrait.
