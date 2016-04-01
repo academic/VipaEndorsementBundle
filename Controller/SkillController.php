@@ -57,6 +57,8 @@ class SkillController extends Controller
     {
         $this->throw404IfNotFound($entity);
         $em = $this->getDoctrine()->getEntityManager();
+
+        $this->get('ojs_core.delete.service')->check($entity);
         $em->remove($entity);
         $em->flush();
 
@@ -89,7 +91,7 @@ class SkillController extends Controller
         $em->persist($userSkill);
         $em->flush();
 
-        $this->successFlashBag('success.create');
+        $this->successFlashBag('successful.create');
         return $this->redirectToRoute('user_endorsement_skills');
     }
 

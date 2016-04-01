@@ -30,3 +30,4 @@ BulutYazilim\EndorsementBundle\Entity\UserSkill:
     userSkillEndorsers:
       targetEntity: BulutYazilim\EndorsementBundle\Entity\UserEndorse
       mappedBy: userSkill
+      cascade: ["persist", "remove"]
