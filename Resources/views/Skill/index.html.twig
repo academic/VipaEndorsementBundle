@@ -21,6 +21,10 @@
                     <a class="btn btn-primary skill-item" data-name="{{ userSkill.skill.name }}" href="{{ path('user_endorsement_skills_remove', {id: userSkill.id}) }}">
                         <span class="skill-item-name">{{ userSkill.skill.name }}</span> <span class="badge">{{ userSkill.endorsementCount }}</span>
                     </a>
+                    {% if not loop.last %}
+                        <br>
+                        <div class="top10"></div>
+                    {% endif %}
                 {% endfor %}
                 </h3>
                 <hr>

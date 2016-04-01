@@ -13,23 +13,39 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class EndorsementEventListener implements EventSubscriberInterface
 {
-    /** @var  ObjectManager */
+    /**
+     * @var  ObjectManager
+     */
     private $em;
 
-    /** @var  RouterInterface */
+    /**
+     * @var  RouterInterface
+     */
     private $router;
 
-    /** @var  JournalService */
+    /**
+     * @var  JournalService
+     */
     private $journalService;
 
-    /** @var TokenStorageInterface */
+    /**
+     * @var TokenStorageInterface
+     */
     private $tokenStorage;
 
-    /** @var \Twig_Environment */
+    /**
+     * @var \Twig_Environment
+     */
     private $twig;
+
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
 
     /**
      * @param ObjectManager   $em
@@ -41,14 +57,16 @@ class EndorsementEventListener implements EventSubscriberInterface
         RouterInterface $router,
         JournalService $journalService,
         TokenStorageInterface $tokenStorage,
-        \Twig_Environment $twig
+        \Twig_Environment $twig,
+        TranslatorInterface $translator
     )
     {
-        $this->em = $em;
-        $this->router = $router;
-        $this->journalService = $journalService;
-        $this->tokenStorage = $tokenStorage;
-        $this->twig = $twig;
+        $this->em               = $em;
+        $this->router           = $router;
+        $this->journalService   = $journalService;
+        $this->tokenStorage     = $tokenStorage;
+        $this->twig             = $twig;
+        $this->translator       = $translator;
     }
 
     /**
@@ -57,8 +75,8 @@ class EndorsementEventListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            TwigEvents::OJS_USER_PROFILE_EDIT_TABS => 'onUserProfileEditTabs',
-            TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW => 'onUserProfilePublicView',
+            TwigEvents::OJS_USER_PROFILE_EDIT_TABS          => 'onUserProfileEditTabs',
+            TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW        => 'onUserProfilePublicView',
             TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW_SCRIPT => 'onUserProfilePublicViewScript'
         );
     }
@@ -70,7 +88,7 @@ class EndorsementEventListener implements EventSubscriberInterface
     {
         $isActive = $event->getOptions()['active_tab'] == 6 ? 'class="active"':'';
         $event->setTemplate('<li role="presentation" '.$isActive.'>'
-            .'<a href="'.$this->router->generate('user_endorsement_skills').'">skills</a>'
+            .'<a href="'.$this->router->generate('user_endorsement_skills').'">'.$this->translator->trans('title.skills').'</a>'
         .'</li>');
     }
 
