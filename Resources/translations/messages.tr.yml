@@ -1,4 +1,5 @@
 title.skills: Yetkinlikler
 skills.remove: Kaldır
 skills.endorse: Destekle
-select.skill: Yetkinlik Seç
+select.skill: 'Yetkinlik Seç'
+successful.endorse: 'Başarıyla Desteklendi'

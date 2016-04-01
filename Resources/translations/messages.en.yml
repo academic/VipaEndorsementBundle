@@ -1,4 +1,5 @@
 title.skills: Skills
 skills.remove: Remove
 skills.endorse: Endorse
-select.skill: Select Skill
+select.skill: 'Select Skill'
+successful.endorse: 'Successful Endorse'

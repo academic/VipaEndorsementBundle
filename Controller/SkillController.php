@@ -112,7 +112,7 @@ class SkillController extends Controller
         $userSkill->setEndorsementCount(1 + $userSkill->getEndorsementCount());
         $em->persist($endorseUser);
         $em->flush();
-        $this->successFlashBag('success.create');
+        $this->successFlashBag('successful.endorse');
         return $this->redirectToRoute('ojs_user_profile', [
             'slug' => $userSkill->getUser()->getUsername()
         ]);
