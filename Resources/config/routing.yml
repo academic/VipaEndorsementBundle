@@ -1,20 +1,20 @@
 user_endorsement_skills:
     path: /user/skills
-    defaults: { _controller: "OjsEndorsementBundle:Skill:index" }
+    defaults: { _controller: "EndorsementBundle:Skill:index" }
 
 user_endorsement_skills_add:
     path: /user/skills/add
-    defaults: { _controller: "OjsEndorsementBundle:Skill:add" }
+    defaults: { _controller: "EndorsementBundle:Skill:add" }
 
 user_endorsement_skills_remove:
     path: /user/skills/remove/{id}
-    defaults: { _controller: "OjsEndorsementBundle:Skill:remove" }
+    defaults: { _controller: "EndorsementBundle:Skill:remove" }
 
 user_endorsement_endorse_user:
     path: /user/endorse/{id}
-    defaults: { _controller: "OjsEndorsementBundle:Skill:endorseUser" }
+    defaults: { _controller: "EndorsementBundle:Skill:endorseUser" }
 
 user_endorsement_skill_autocomplete:
     path:  /user/endorse/skill/autocomplete
-    defaults: { _controller: "OjsEndorsementBundle:Skill:autoComplete" }
+    defaults: { _controller: "EndorsementBundle:Skill:autoComplete" }
     methods:  [GET]

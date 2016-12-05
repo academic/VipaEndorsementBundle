@@ -1,12 +1,12 @@
 <?php
 
-namespace Ojs\EndorsementBundle\Controller;
+namespace BulutYazilim\EndorsementBundle\Controller;
 
 use Ojs\CoreBundle\Controller\OjsController as Controller;
-use Ojs\EndorsementBundle\Entity\Skill;
-use Ojs\EndorsementBundle\Entity\UserEndorse;
-use Ojs\EndorsementBundle\Entity\UserSkill;
-use Ojs\EndorsementBundle\Form\Type\SkillType;
+use BulutYazilim\EndorsementBundle\Entity\Skill;
+use BulutYazilim\EndorsementBundle\Entity\UserEndorse;
+use BulutYazilim\EndorsementBundle\Entity\UserSkill;
+use BulutYazilim\EndorsementBundle\Form\Type\SkillType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +27,7 @@ class SkillController extends Controller
         ]);
 
         $skillAddForm = $this->createCreateForm();
-        return $this->render('OjsEndorsementBundle:Skill:index.html.twig', [
+        return $this->render('EndorsementBundle:Skill:index.html.twig', [
             'userSkills' => $userSkills,
             'skillAddForm' => $skillAddForm->createView()
         ]);

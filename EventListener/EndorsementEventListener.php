@@ -1,6 +1,6 @@
 <?php
 
-namespace Ojs\EndorsementBundle\EventListener;
+namespace BulutYazilim\EndorsementBundle\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Ojs\CoreBundle\Events\TwigEvent;
@@ -111,7 +111,7 @@ class EndorsementEventListener implements EventSubscriberInterface
         }else{
             $isCurrentUser = $currentUser->getId() == $user->getId() ? true: false;
         }
-        $event->setTemplate($this->twig->render('OjsEndorsementBundle:Skill:skills.html.twig', [
+        $event->setTemplate($this->twig->render('EndorsementBundle:Skill:skills.html.twig', [
             'userSkills' => $userSkills,
             'user' => $user,
             'isCurrentUser' => $isCurrentUser
@@ -133,7 +133,7 @@ class EndorsementEventListener implements EventSubscriberInterface
         }else{
             $isCurrentUser = $currentUser->getId() == $user->getId() ? true: false;
         }
-        $event->setTemplate($this->twig->render('OjsEndorsementBundle:Skill:skills_script.html.twig', [
+        $event->setTemplate($this->twig->render('EndorsementBundle:Skill:skills_script.html.twig', [
             'isCurrentUser' => $isCurrentUser
         ]));
     }

@@ -1,5 +1,5 @@
 {
-  "name": "ojs/endorsement-bundle",
+  "name": "bulutyazilim/endorsement-bundle",
   "description": "Endorsement bundle for OJS",
   "type": "ojs-bundle",
   "authors": [
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ojs\\EndorsementBundle\\": ""
+      "BulutYazilim\\EndorsementBundle\\": ""
     }
   },
   "extra": {

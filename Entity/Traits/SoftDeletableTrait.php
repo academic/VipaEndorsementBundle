@@ -1,6 +1,6 @@
 <?php
 
-namespace Ojs\EndorsementBundle\Entity\Traits;
+namespace BulutYazilim\EndorsementBundle\Entity\Traits;
 
 trait SoftDeletableTrait
 {

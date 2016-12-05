@@ -1,6 +1,6 @@
 <?php
 
-namespace Ojs\EndorsementBundle\DependencyInjection;
+namespace BulutYazilim\EndorsementBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

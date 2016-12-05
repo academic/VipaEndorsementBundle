@@ -1,6 +1,6 @@
 services:
   endorsement.endorsement_event_listener:
-    class: Ojs\EndorsementBundle\EventListener\EndorsementEventListener
+    class: BulutYazilim\EndorsementBundle\EventListener\EndorsementEventListener
     arguments: ["@doctrine.orm.entity_manager", "@router", "@ojs.journal_service", "@security.token_storage", "@twig", '@translator']
     tags:
       - { name: kernel.event_subscriber }

@@ -1,13 +1,13 @@
 <?php
 
-namespace Ojs\EndorsementBundle\Entity;
+namespace BulutYazilim\EndorsementBundle\Entity;
 
-use Ojs\EndorsementBundle\Entity\Traits\GenericEntityTrait;
+use BulutYazilim\EndorsementBundle\Entity\Traits\GenericEntityTrait;
 use Ojs\UserBundle\Entity\User;
 
 /**
  * Class UserEndorse
- * @package Ojs\EndorsementBundle\Entity
+ * @package BulutYazilim\EndorsementBundle\Entity
  */
 class UserEndorse
 {
