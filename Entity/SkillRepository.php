@@ -1,6 +1,6 @@
 <?php
 
-namespace BulutYazilim\EndorsementBundle\Entity;
+namespace Ojs\EndorsementBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;

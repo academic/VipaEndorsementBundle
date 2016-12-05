@@ -11,6 +11,6 @@
     "bulutyazilim/endorsement-bundle": "~0.2"
   },
   "extra": {
-    "bundle-class": "BulutYazilim\\EndorsementBundle\\EndorsementBundle"
+    "bundle-class": "Ojs\\EndorsementBundle\\OjsEndorsementBundle"
   }
 }

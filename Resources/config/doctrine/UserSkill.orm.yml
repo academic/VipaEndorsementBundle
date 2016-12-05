@@ -1,7 +1,7 @@
-BulutYazilim\EndorsementBundle\Entity\UserSkill:
+Ojs\EndorsementBundle\Entity\UserSkill:
   type: entity
   table: en_user_skill
-  repositoryClass: BulutYazilim\EndorsementBundle\Entity\UserSkillRepository
+  repositoryClass: Ojs\EndorsementBundle\Entity\UserSkillRepository
   id:
     id:
       type: integer
@@ -22,12 +22,12 @@ BulutYazilim\EndorsementBundle\Entity\UserSkill:
         name: user_id
         referencedColumnName: id
     skill:
-      targetEntity: BulutYazilim\EndorsementBundle\Entity\Skill
+      targetEntity: Ojs\EndorsementBundle\Entity\Skill
       joinColumn:
         name: skill_id
         referencedColumnName: id
   oneToMany:
     userSkillEndorsers:
-      targetEntity: BulutYazilim\EndorsementBundle\Entity\UserEndorse
+      targetEntity: Ojs\EndorsementBundle\Entity\UserEndorse
       mappedBy: userSkill
       cascade: ["persist", "remove"]
