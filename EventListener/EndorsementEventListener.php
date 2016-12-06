@@ -74,7 +74,6 @@ class EndorsementEventListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        exit('hello');
         return array(
             TwigEvents::OJS_USER_PROFILE_EDIT_TABS          => 'onUserProfileEditTabs',
             TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW        => 'onUserProfilePublicView',
@@ -87,7 +86,7 @@ class EndorsementEventListener implements EventSubscriberInterface
      */
     public function onUserProfileEditTabs(TwigEvent $event)
     {
-        $isActive = $event->getOptions()['active_tab'] == 6 ? 'class="active"':'';
+        $isActive = $event->getOptions()['active_tab'] == 100 ? 'class="active"':'';
         $event->setTemplate('<li role="presentation" '.$isActive.'>'
             .'<a href="'.$this->router->generate('user_endorsement_skills').'">'.$this->translator->trans('title.skills').'</a>'
         .'</li>');
@@ -104,7 +103,7 @@ class EndorsementEventListener implements EventSubscriberInterface
         $currentUser = $token->getUser();
         $user = $options['user'];
         $template = '';
-        $userSkills = $this->em->getRepository('EndorsementBundle:UserSkill')->findBy([
+        $userSkills = $this->em->getRepository('OjsEndorsementBundle:UserSkill')->findBy([
             'user' => $user
         ]);
         if(!$currentUser instanceof User){
@@ -112,7 +111,7 @@ class EndorsementEventListener implements EventSubscriberInterface
         }else{
             $isCurrentUser = $currentUser->getId() == $user->getId() ? true: false;
         }
-        $event->setTemplate($this->twig->render('EndorsementBundle:Skill:skills.html.twig', [
+        $event->setTemplate($this->twig->render('OjsEndorsementBundle:Skill:skills.html.twig', [
             'userSkills' => $userSkills,
             'user' => $user,
             'isCurrentUser' => $isCurrentUser
@@ -134,7 +133,7 @@ class EndorsementEventListener implements EventSubscriberInterface
         }else{
             $isCurrentUser = $currentUser->getId() == $user->getId() ? true: false;
         }
-        $event->setTemplate($this->twig->render('EndorsementBundle:Skill:skills_script.html.twig', [
+        $event->setTemplate($this->twig->render('OjsEndorsementBundle:Skill:skills_script.html.twig', [
             'isCurrentUser' => $isCurrentUser
         ]));
     }

@@ -79,7 +79,7 @@ class SkillController extends Controller
             $em->persist($skill);
             $em->flush();
         }else{
-            $skill = $em->getRepository("EndorsementBundle:Skill")->find($skillNameOrId);
+            $skill = $em->getRepository("OjsEndorsementBundle:Skill")->find($skillNameOrId);
             $this->throw404IfNotFound($skill);
         }
         $userSkill = new UserSkill();
@@ -125,8 +125,8 @@ class SkillController extends Controller
     public function autoCompleteAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $skillRepo = $em->getRepository("EndorsementBundle:Skill");
-        $userSkillRepo = $em->getRepository("EndorsementBundle:UserSkill");
+        $skillRepo = $em->getRepository("OjsEndorsementBundle:Skill");
+        $userSkillRepo = $em->getRepository("OjsEndorsementBundle:UserSkill");
         $userSkills = $userSkillRepo->findBy([
             'user' => $this->getUser()
         ]);
