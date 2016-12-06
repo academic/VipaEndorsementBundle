@@ -1,6 +1,6 @@
 <?php
 
-namespace BulutYazilim\EndorsementBundle\EventListener;
+namespace Ojs\EndorsementBundle\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Ojs\CoreBundle\Events\TwigEvent;
@@ -74,6 +74,7 @@ class EndorsementEventListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
+        exit('hello');
         return array(
             TwigEvents::OJS_USER_PROFILE_EDIT_TABS          => 'onUserProfileEditTabs',
             TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW        => 'onUserProfilePublicView',

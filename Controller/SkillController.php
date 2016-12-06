@@ -1,12 +1,12 @@
 <?php
 
-namespace BulutYazilim\EndorsementBundle\Controller;
+namespace Ojs\EndorsementBundle\Controller;
 
 use Ojs\CoreBundle\Controller\OjsController as Controller;
-use BulutYazilim\EndorsementBundle\Entity\Skill;
-use BulutYazilim\EndorsementBundle\Entity\UserEndorse;
-use BulutYazilim\EndorsementBundle\Entity\UserSkill;
-use BulutYazilim\EndorsementBundle\Form\Type\SkillType;
+use Ojs\EndorsementBundle\Entity\Skill;
+use Ojs\EndorsementBundle\Entity\UserEndorse;
+use Ojs\EndorsementBundle\Entity\UserSkill;
+use Ojs\EndorsementBundle\Form\Type\SkillType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,12 +22,12 @@ class SkillController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $userSkills = $em->getRepository('EndorsementBundle:UserSkill')->findBy([
+        $userSkills = $em->getRepository('OjsEndorsementBundle:UserSkill')->findBy([
             'user' => $user
         ]);
 
         $skillAddForm = $this->createCreateForm();
-        return $this->render('EndorsementBundle:Skill:index.html.twig', [
+        return $this->render('OjsEndorsementBundle:Skill:index.html.twig', [
             'userSkills' => $userSkills,
             'skillAddForm' => $skillAddForm->createView()
         ]);
@@ -56,7 +56,7 @@ class SkillController extends Controller
     public function removeAction(UserSkill $entity)
     {
         $this->throw404IfNotFound($entity);
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $this->get('ojs_core.delete.service')->check($entity);
         $em->remove($entity);

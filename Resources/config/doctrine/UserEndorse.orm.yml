@@ -1,7 +1,7 @@
-BulutYazilim\EndorsementBundle\Entity\UserEndorse:
+Ojs\EndorsementBundle\Entity\UserEndorse:
   type: entity
   table: en_user_endorse
-  repositoryClass: BulutYazilim\EndorsementBundle\Entity\UserSkillRepository
+  repositoryClass: Ojs\EndorsementBundle\Entity\UserSkillRepository
   id:
     id:
       type: integer
@@ -14,7 +14,7 @@ BulutYazilim\EndorsementBundle\Entity\UserEndorse:
   fields:
   manyToOne:
     userSkill:
-      targetEntity: BulutYazilim\EndorsementBundle\Entity\UserSkill
+      targetEntity: Ojs\EndorsementBundle\Entity\UserSkill
       joinColumn:
         name: user_skill_id
         referencedColumnName: id

@@ -1,10 +1,10 @@
 <?php
 
-namespace BulutYazilim\EndorsementBundle\Entity\Traits;
+namespace Ojs\EndorsementBundle\Entity\Traits;
 
 /**
  * Class GenericEntityTrait
- * @package BulutYazilim\EndorsementBundle\Entity\Traits\GenericEntityTrait
+ * @package Ojs\EndorsementBundle\Entity\Traits\GenericEntityTrait
  */
 trait GenericEntityTrait
 {

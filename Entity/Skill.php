@@ -1,14 +1,14 @@
 <?php
 
-namespace BulutYazilim\EndorsementBundle\Entity;
+namespace Ojs\EndorsementBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use BulutYazilim\EndorsementBundle\Entity\Traits\GenericEntityTrait;
+use Ojs\EndorsementBundle\Entity\Traits\GenericEntityTrait;
 use Ojs\UserBundle\Entity\User;
 
 /**
  * Class Skill
- * @package BulutYazilim\EndorsementBundle\Entity
+ * @package Ojs\EndorsementBundle\Entity
  */
 class Skill
 {
