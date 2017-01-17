@@ -3,10 +3,13 @@
 namespace Ojs\EndorsementBundle\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Ojs\AdminBundle\Events\MergeEvent;
+use Ojs\AdminBundle\Events\MergeEvents;
 use Ojs\CoreBundle\Events\TwigEvent;
+use Ojs\EndorsementBundle\Entity\UserEndorse;
+use Ojs\EndorsementBundle\Entity\UserSkill;
 use Ojs\JournalBundle\Service\JournalService;
 use Ojs\JournalBundle\Entity\Journal;
-use Ojs\CoreBundle\Event\WorkflowEvent;
 use Ojs\CoreBundle\Events\TwigEvents;
 use Ojs\UserBundle\Entity\User;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -77,7 +80,9 @@ class EndorsementEventListener implements EventSubscriberInterface
         return array(
             TwigEvents::OJS_USER_PROFILE_EDIT_TABS          => 'onUserProfileEditTabs',
             TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW        => 'onUserProfilePublicView',
-            TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW_SCRIPT => 'onUserProfilePublicViewScript'
+            TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW_SCRIPT => 'onUserProfilePublicViewScript',
+            MergeEvents::OJS_ADMIN_USER_MERGE               => 'onAdminUserMerge',
+            
         );
     }
 
@@ -137,4 +142,86 @@ class EndorsementEventListener implements EventSubscriberInterface
             'isCurrentUser' => $isCurrentUser
         ]));
     }
+
+    /**
+     * @param MergeEvent $event
+     * @return null
+     */
+    public function onAdminUserMerge(MergeEvent $event)
+    {
+        $primaryUser = $event->getPrimaryUser();
+        if(!$primaryUser instanceof User){
+
+            exit('1');
+            return;
+        }
+
+        /** @var User[] $slaveUsers */
+        $slaveUsers = $event->getSlaveUsers();
+        if(!$slaveUsers){
+
+            exit('2');
+            return;
+        }
+        foreach ($slaveUsers as $slaveUser) {
+            if($primaryUser->getId() == $slaveUser->getId() || !$slaveUser->getMerged()){
+
+                exit('3');
+                continue;
+            }
+
+            $this->migrateSkills($primaryUser, $slaveUser);
+            $this->migrateEndorser($primaryUser,$slaveUser);
+        }
+        return;
+    }
+
+    /**
+     * @param User $primaryUser
+     * @param User $slaveUser
+     */
+    private function migrateSkills(User $primaryUser, User $slaveUser) 
+    {
+        /**  @var UserSkill[] $skills */
+        $skills = $this->em->getRepository(UserSkill::class)->findBy(['user' => $slaveUser->getId()]);
+
+        if(!$skills) {
+            return;
+        }
+        foreach ($skills as $skill) {
+            $haveSkill = $this->em->getRepository(UserSkill::class)->findBy(['user' => $primaryUser->getId(), 'skill' => $skill->getSkill()]);
+
+            if(!$haveSkill)
+            {
+                $skill->setUser($primaryUser);
+                $this->em->persist($skill);
+            }
+        }
+
+    }
+
+    /**
+     * @param User $primaryUser
+     * @param User $slaveUser
+     */
+    private function migrateEndorser(User $primaryUser, User $slaveUser)
+    {
+        /**  @var UserEndorse[] $userEndorsers */
+        $userEndorsers = $this->em->getRepository(UserEndorse::class)->findBy(['endorser' => $slaveUser->getId()]);
+
+        if(!$userEndorsers) {
+            return;
+        }
+        $primaryUserEndorsers = $this->em->getRepository(UserEndorse::class)->findBy(['endorser' => $primaryUser->getId()]);
+
+        foreach ($userEndorsers as $userEndorse) {
+            if(!in_array($userEndorse, $primaryUserEndorsers))
+            {
+                $userEndorse->setEndorser($primaryUser);
+                $this->em->persist($userEndorse);
+            }
+        }
+
+    }
+
 }
