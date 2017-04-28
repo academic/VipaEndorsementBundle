@@ -1,6 +1,6 @@
 {
   "name": "vipa/endorsement-bundle",
-  "description": "Endorsement bundle for OJS",
+  "description": "Endorsement bundle for VIPA",
   "type": "vipa-bundle",
   "authors": [
     {

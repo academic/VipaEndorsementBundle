@@ -75,9 +75,9 @@ class EndorsementEventListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            TwigEvents::OJS_USER_PROFILE_EDIT_TABS          => 'onUserProfileEditTabs',
-            TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW        => 'onUserProfilePublicView',
-            TwigEvents::OJS_USER_PROFILE_PUBLIC_VIEW_SCRIPT => 'onUserProfilePublicViewScript'
+            TwigEvents::VIPA_USER_PROFILE_EDIT_TABS          => 'onUserProfileEditTabs',
+            TwigEvents::VIPA_USER_PROFILE_PUBLIC_VIEW        => 'onUserProfilePublicView',
+            TwigEvents::VIPA_USER_PROFILE_PUBLIC_VIEW_SCRIPT => 'onUserProfilePublicViewScript'
         );
     }
 
