@@ -1,7 +1,7 @@
-Ojs\EndorsementBundle\Entity\UserSkill:
+Vipa\EndorsementBundle\Entity\UserSkill:
   type: entity
   table: en_user_skill
-  repositoryClass: Ojs\EndorsementBundle\Entity\UserSkillRepository
+  repositoryClass: Vipa\EndorsementBundle\Entity\UserSkillRepository
   id:
     id:
       type: integer
@@ -17,17 +17,17 @@ Ojs\EndorsementBundle\Entity\UserSkill:
       type: integer
   manyToOne:
     user:
-      targetEntity: Ojs\UserBundle\Entity\User
+      targetEntity: Vipa\UserBundle\Entity\User
       joinColumn:
         name: user_id
         referencedColumnName: id
     skill:
-      targetEntity: Ojs\EndorsementBundle\Entity\Skill
+      targetEntity: Vipa\EndorsementBundle\Entity\Skill
       joinColumn:
         name: skill_id
         referencedColumnName: id
   oneToMany:
     userSkillEndorsers:
-      targetEntity: Ojs\EndorsementBundle\Entity\UserEndorse
+      targetEntity: Vipa\EndorsementBundle\Entity\UserEndorse
       mappedBy: userSkill
       cascade: ["persist", "remove"]

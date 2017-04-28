@@ -1,5 +1,5 @@
-Ojs\EndorsementBundle\Entity\Skill:
-  repositoryClass: Ojs\EndorsementBundle\Entity\SkillRepository
+Vipa\EndorsementBundle\Entity\Skill:
+  repositoryClass: Vipa\EndorsementBundle\Entity\SkillRepository
   table: en_skill
   type: entity
   gedmo:

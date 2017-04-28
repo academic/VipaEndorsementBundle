@@ -1,9 +1,9 @@
 <?php
 
-namespace Ojs\EndorsementBundle;
+namespace Vipa\EndorsementBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class OjsEndorsementBundle extends Bundle
+class VipaEndorsementBundle extends Bundle
 {
 }

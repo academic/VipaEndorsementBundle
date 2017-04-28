@@ -1,9 +1,9 @@
 <?php
 
-namespace Ojs\EndorsementBundle\Form\Type;
+namespace Vipa\EndorsementBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
-use Ojs\UserBundle\Entity\User;
+use Vipa\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,7 +25,7 @@ class SkillType extends AbstractType
                     'required' => true,
                     'remote_route' => 'user_endorsement_skill_autocomplete',
                     'label' => 'skill',
-                    'class' => 'Ojs\EndorsementBundle\Entity\Skill',
+                    'class' => 'Vipa\EndorsementBundle\Entity\Skill',
                     'label' => 'select.skill',
                     'attr' => [
                         'class' => 'select2-element',

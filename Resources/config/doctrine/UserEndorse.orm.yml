@@ -1,7 +1,7 @@
-Ojs\EndorsementBundle\Entity\UserEndorse:
+Vipa\EndorsementBundle\Entity\UserEndorse:
   type: entity
   table: en_user_endorse
-  repositoryClass: Ojs\EndorsementBundle\Entity\UserSkillRepository
+  repositoryClass: Vipa\EndorsementBundle\Entity\UserSkillRepository
   id:
     id:
       type: integer
@@ -14,12 +14,12 @@ Ojs\EndorsementBundle\Entity\UserEndorse:
   fields:
   manyToOne:
     userSkill:
-      targetEntity: Ojs\EndorsementBundle\Entity\UserSkill
+      targetEntity: Vipa\EndorsementBundle\Entity\UserSkill
       joinColumn:
         name: user_skill_id
         referencedColumnName: id
     endorser:
-      targetEntity: Ojs\UserBundle\Entity\User
+      targetEntity: Vipa\UserBundle\Entity\User
       joinColumn:
         name: endorser_id
         referencedColumnName: id

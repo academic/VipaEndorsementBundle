@@ -1,6 +1,6 @@
 <?php
 
-namespace Ojs\EndorsementBundle\Entity\Traits;
+namespace Vipa\EndorsementBundle\Entity\Traits;
 
 /**
  * Class TimestampableTrait.

@@ -1,14 +1,14 @@
 <?php
 
-namespace Ojs\EndorsementBundle\Entity;
+namespace Vipa\EndorsementBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Ojs\EndorsementBundle\Entity\Traits\GenericEntityTrait;
-use Ojs\UserBundle\Entity\User;
+use Vipa\EndorsementBundle\Entity\Traits\GenericEntityTrait;
+use Vipa\UserBundle\Entity\User;
 
 /**
  * Class Skill
- * @package Ojs\EndorsementBundle\Entity
+ * @package Vipa\EndorsementBundle\Entity
  */
 class Skill
 {

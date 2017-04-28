@@ -1,13 +1,13 @@
 <?php
 
-namespace Ojs\EndorsementBundle\Entity;
+namespace Vipa\EndorsementBundle\Entity;
 
-use Ojs\EndorsementBundle\Entity\Traits\GenericEntityTrait;
-use Ojs\UserBundle\Entity\User;
+use Vipa\EndorsementBundle\Entity\Traits\GenericEntityTrait;
+use Vipa\UserBundle\Entity\User;
 
 /**
  * Class UserEndorse
- * @package Ojs\EndorsementBundle\Entity
+ * @package Vipa\EndorsementBundle\Entity
  */
 class UserEndorse
 {

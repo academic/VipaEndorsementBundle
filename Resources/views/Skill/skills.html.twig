@@ -25,7 +25,7 @@
                     </th>
                     <th>
                         {% for endorse in userSkill.userSkillEndorsers %}
-                            <a href="{{ path('ojs_user_profile', {slug: endorse.endorser.username}) }}">
+                            <a href="{{ path('vipa_user_profile', {slug: endorse.endorser.username}) }}">
                                 <img
                                         {% if endorse.endorser.avatar is not null %}
                                             class="img-circle"

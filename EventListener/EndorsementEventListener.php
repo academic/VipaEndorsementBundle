@@ -1,14 +1,14 @@
 <?php
 
-namespace Ojs\EndorsementBundle\EventListener;
+namespace Vipa\EndorsementBundle\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Ojs\CoreBundle\Events\TwigEvent;
-use Ojs\JournalBundle\Service\JournalService;
-use Ojs\JournalBundle\Entity\Journal;
-use Ojs\CoreBundle\Event\WorkflowEvent;
-use Ojs\CoreBundle\Events\TwigEvents;
-use Ojs\UserBundle\Entity\User;
+use Vipa\CoreBundle\Events\TwigEvent;
+use Vipa\JournalBundle\Service\JournalService;
+use Vipa\JournalBundle\Entity\Journal;
+use Vipa\CoreBundle\Event\WorkflowEvent;
+use Vipa\CoreBundle\Events\TwigEvents;
+use Vipa\UserBundle\Entity\User;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
@@ -103,7 +103,7 @@ class EndorsementEventListener implements EventSubscriberInterface
         $currentUser = $token->getUser();
         $user = $options['user'];
         $template = '';
-        $userSkills = $this->em->getRepository('OjsEndorsementBundle:UserSkill')->findBy([
+        $userSkills = $this->em->getRepository('VipaEndorsementBundle:UserSkill')->findBy([
             'user' => $user
         ]);
         if(!$currentUser instanceof User){
@@ -111,7 +111,7 @@ class EndorsementEventListener implements EventSubscriberInterface
         }else{
             $isCurrentUser = $currentUser->getId() == $user->getId() ? true: false;
         }
-        $event->setTemplate($this->twig->render('OjsEndorsementBundle:Skill:skills.html.twig', [
+        $event->setTemplate($this->twig->render('VipaEndorsementBundle:Skill:skills.html.twig', [
             'userSkills' => $userSkills,
             'user' => $user,
             'isCurrentUser' => $isCurrentUser
@@ -133,7 +133,7 @@ class EndorsementEventListener implements EventSubscriberInterface
         }else{
             $isCurrentUser = $currentUser->getId() == $user->getId() ? true: false;
         }
-        $event->setTemplate($this->twig->render('OjsEndorsementBundle:Skill:skills_script.html.twig', [
+        $event->setTemplate($this->twig->render('VipaEndorsementBundle:Skill:skills_script.html.twig', [
             'isCurrentUser' => $isCurrentUser
         ]));
     }

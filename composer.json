@@ -1,7 +1,7 @@
 {
-  "name": "ojs/endorsement-bundle",
+  "name": "vipa/endorsement-bundle",
   "description": "Endorsement bundle for OJS",
-  "type": "ojs-bundle",
+  "type": "vipa-bundle",
   "authors": [
     {
       "name": "Behram ÇELEN",
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ojs\\EndorsementBundle\\": ""
+      "Vipa\\EndorsementBundle\\": ""
     }
   },
   "extra": {

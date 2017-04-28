@@ -1,12 +1,12 @@
 <?php
 
-namespace Ojs\EndorsementBundle\Controller;
+namespace Vipa\EndorsementBundle\Controller;
 
-use Ojs\CoreBundle\Controller\OjsController as Controller;
-use Ojs\EndorsementBundle\Entity\Skill;
-use Ojs\EndorsementBundle\Entity\UserEndorse;
-use Ojs\EndorsementBundle\Entity\UserSkill;
-use Ojs\EndorsementBundle\Form\Type\SkillType;
+use Vipa\CoreBundle\Controller\VipaController as Controller;
+use Vipa\EndorsementBundle\Entity\Skill;
+use Vipa\EndorsementBundle\Entity\UserEndorse;
+use Vipa\EndorsementBundle\Entity\UserSkill;
+use Vipa\EndorsementBundle\Form\Type\SkillType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,12 +22,12 @@ class SkillController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $userSkills = $em->getRepository('OjsEndorsementBundle:UserSkill')->findBy([
+        $userSkills = $em->getRepository('VipaEndorsementBundle:UserSkill')->findBy([
             'user' => $user
         ]);
 
         $skillAddForm = $this->createCreateForm();
-        return $this->render('OjsEndorsementBundle:Skill:index.html.twig', [
+        return $this->render('VipaEndorsementBundle:Skill:index.html.twig', [
             'userSkills' => $userSkills,
             'skillAddForm' => $skillAddForm->createView()
         ]);
@@ -58,7 +58,7 @@ class SkillController extends Controller
         $this->throw404IfNotFound($entity);
         $em = $this->getDoctrine()->getManager();
 
-        $this->get('ojs_core.delete.service')->check($entity);
+        $this->get('vipa_core.delete.service')->check($entity);
         $em->remove($entity);
         $em->flush();
 
@@ -79,7 +79,7 @@ class SkillController extends Controller
             $em->persist($skill);
             $em->flush();
         }else{
-            $skill = $em->getRepository("OjsEndorsementBundle:Skill")->find($skillNameOrId);
+            $skill = $em->getRepository("VipaEndorsementBundle:Skill")->find($skillNameOrId);
             $this->throw404IfNotFound($skill);
         }
         $userSkill = new UserSkill();
@@ -113,7 +113,7 @@ class SkillController extends Controller
         $em->persist($endorseUser);
         $em->flush();
         $this->successFlashBag('successful.endorse');
-        return $this->redirectToRoute('ojs_user_profile', [
+        return $this->redirectToRoute('vipa_user_profile', [
             'slug' => $userSkill->getUser()->getUsername()
         ]);
     }
@@ -125,8 +125,8 @@ class SkillController extends Controller
     public function autoCompleteAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $skillRepo = $em->getRepository("OjsEndorsementBundle:Skill");
-        $userSkillRepo = $em->getRepository("OjsEndorsementBundle:UserSkill");
+        $skillRepo = $em->getRepository("VipaEndorsementBundle:Skill");
+        $userSkillRepo = $em->getRepository("VipaEndorsementBundle:UserSkill");
         $userSkills = $userSkillRepo->findBy([
             'user' => $this->getUser()
         ]);
